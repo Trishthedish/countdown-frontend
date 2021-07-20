@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import axios from 'axios'
+import moment from 'moment'
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <ul>
             <li>{countdown.title}</li>
             <li>{countdown.countdown_till_date}</li>
+            <li>{moment(countdown.countdown_till_date).fromNow()}</li>
           </ul>
         )}
       </div>
