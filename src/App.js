@@ -11,16 +11,6 @@ function App() {
 
   const API_BASE_URL = 'http://localhost:5000';
 
-  const createCowndown = (newCountdown) => {
-    axios.post(`${API_BASE_URL}/countdowns`, newCountdown).then((response) => {
-      const setOfCountdowns = [...newCountdown];
-      setOfCountdowns.push(response.data);
-      setCountdowns(setOfCountdowns)
-    })
-    .catch((error) => {
-      console.log('error --> ', error);
-    });
-  }
 
   const refreshCountdowns = () => {
     axios.get(`${API_BASE_URL}/countdowns`)
@@ -45,6 +35,11 @@ function App() {
     });
   }
 
+  const deleteCountdown = (id) => {
+    axios.delete(`${API_BASE_URL}/countdowns/${id}`)
+    .then(refreshCountdowns)
+  }
+
   return (
     <div className="App">
       <h1>Countdown Clock App</h1>
@@ -56,6 +51,7 @@ function App() {
         addCountdownCallback={createCowndown} 
       />
       <CountdownList
+        onDelete={deleteCountdown}
         countdowns={countdowns}
       />
     </div>
