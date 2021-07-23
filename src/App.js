@@ -4,13 +4,11 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 
-
 function App() {
    const [countdowns, setCountdowns] = useState([])
    const [errorMessage, setErrorMessage] = useState('')
 
   const API_BASE_URL = 'http://localhost:5000';
-
 
   const refreshCountdowns = () => {
     axios.get(`${API_BASE_URL}/countdowns`)
