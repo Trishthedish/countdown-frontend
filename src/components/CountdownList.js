@@ -1,7 +1,6 @@
 import './CountdownList.css';
 
 const CountdownList = (props) => {
-    console.log(props)
     return (
         <section className="list-of-countdowns">
             <h1>List of Countdowns</h1>

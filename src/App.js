@@ -22,7 +22,7 @@ function App() {
     });
   }
 
-  useEffect(() => {
+  const refreshCountdowns = () => {
     axios.get(`${API_BASE_URL}/countdowns`)
     .then((response) => {
       setCountdowns(response.data)
@@ -30,7 +30,20 @@ function App() {
     }).catch((error) => {
       setErrorMessage('there has been an error: ', error);
     });
+  }
+
+  useEffect(() => {
+    refreshCountdowns()
   }, []);
+
+  const createCowndown = (newCountdown) => {
+    axios.post(`${API_BASE_URL}/countdowns`, newCountdown).then((response) => {
+      refreshCountdowns()
+    })
+    .catch((error) => {
+      console.log('error --> ', error);
+    });
+  }
 
   return (
     <div className="App">
