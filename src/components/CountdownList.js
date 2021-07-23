@@ -9,9 +9,27 @@ const CountdownList = (props) => {
         let days = target.diff(current, 'days');
         let years = target.diff(current, 'years')
         let hours = target.diff(current, 'hours')
+        let minutes = target.diff(current, "minutes")
         let seconds = target.diff(current, 'seconds')
 
-        return `${years} Years | ${days} Days | ${hours} Hours | ${seconds} Seconds`
+        return(
+            <div>
+                <table>
+                    <tr>
+                        <th>Years</th>
+                        <th>Days</th>
+                        <th>Hours</th>
+                        <th>Minutes</th>
+                        <th>Seconds</th>
+                    </tr>
+                    <td>{`${years}`}</td>
+                    <td>{`${days}`}</td>
+                    <td>{`${hours}`}</td>
+                    <td>{`${minutes}`}</td>
+                    <td>{`${seconds}`}</td>
+                </table>
+            </div>
+        )
     }
 
     return (
