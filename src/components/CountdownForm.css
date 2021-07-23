@@ -1,0 +1,13 @@
+.countdown-form {
+    background-color: yellow;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    width: 250px;
+    padding: 20px;
+    box-sizing:border-box;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+}
