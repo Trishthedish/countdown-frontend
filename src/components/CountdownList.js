@@ -1,7 +1,10 @@
 import './CountdownList.css';
+import { useState } from 'react';
+import CountdownForm from './CountdownForm';
 import moment from 'moment';
 
 const CountdownList = (props) => {
+    const [editMap, setEditMap] = useState({})
 
     const calculateTimeLeft = (countdown) => {
         let target = moment(countdown.countdown_till_date)
@@ -15,21 +18,32 @@ const CountdownList = (props) => {
         return(
             <div>
                 <table>
-                    <tr>
-                        <th>Years</th>
-                        <th>Days</th>
-                        <th>Hours</th>
-                        <th>Minutes</th>
-                        <th>Seconds</th>
-                    </tr>
-                    <td>{`${years}`}</td>
-                    <td>{`${days}`}</td>
-                    <td>{`${hours}`}</td>
-                    <td>{`${minutes}`}</td>
-                    <td>{`${seconds}`}</td>
+                    <tbody>
+                        <tr>
+                            <th>Years</th>
+                            <th>Days</th>
+                            <th>Hours</th>
+                            <th>Minutes</th>
+                            <th>Seconds</th>
+                        </tr>
+                        <tr>
+                            <td>{`${years}`}</td>
+                            <td>{`${days}`}</td>
+                            <td>{`${hours}`}</td>
+                            <td>{`${minutes}`}</td>
+                            <td>{`${seconds}`}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
-        )
+       ) 
+    }
+
+    const handleEdit = (countdown) => {
+        setEditMap({
+            ...editMap,
+            [countdown.id]: true
+        });
     }
 
     return (
@@ -38,14 +52,24 @@ const CountdownList = (props) => {
             <div>
                 {props.countdowns && props.countdowns.length > 0 && props.countdowns.map(countdown => {
                     return (
-                        <div className="countdowns" key={countdown.id}>
-                            <span>
-                                <button className="edit-button">edit</button>
-                                <button className="delete-button" onClick={() => props.onDelete(countdown.id)}>🗑</button>
-                            </span>
-                            <h3>{countdown.title}</h3>
-                            <p>Countdown: {countdown.countdown_till_date}</p>
-                            <p>{calculateTimeLeft(countdown)}</p>
+                        <div  key={countdown.id} className="countdowns">
+                            {(editMap[countdown.id]) ?
+                            <div>
+                                <CountdownForm
+                                    countdown={countdown}
+                                />
+                            </div>
+                            :
+                            <>
+                                <span>
+                                    <button className="edit-button" onClick={() => handleEdit(countdown)}>edit</button>
+                                    <button className="delete-button" onClick={() => props.onDelete(countdown.id)}>🗑</button>
+                                </span>
+                                <h3>{countdown.title}</h3>
+                                <p>Countdown: {countdown.countdown_till_date}</p>
+                                <div>{calculateTimeLeft(countdown)}</div>
+                            </>
+                            }
                         </div>
                     )
                 })}

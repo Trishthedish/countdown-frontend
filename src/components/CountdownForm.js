@@ -2,8 +2,7 @@ import './CountdownForm.css';
 
 import { useState } from "react";
 
-const CountdownForm = (props) => {
-    
+const CountdownForm = (props) => {    
     const [formFields, setFormFields] = useState({
         "title": "",
         "countdown_till_date": ""

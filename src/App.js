@@ -38,6 +38,17 @@ function App() {
     .then(refreshCountdowns)
   }
 
+  const editCountdown = (id) => {
+    console.log('more than ID __> ', id)
+    // also need a way to pass payload.
+    // so in this case: 
+    // {
+    //   "title": 'new title info'
+    // }
+    axios.put(`${API_BASE_URL}/countdowns/${id}`, {})
+
+  }
+
   return (
     <div className="App">
       <h1>Countdown Clock App</h1>
@@ -46,11 +57,14 @@ function App() {
       </div>
       <h1>{errorMessage}</h1>
       <CountdownForm 
-        addCountdownCallback={createCowndown} 
+        addCountdownCallback={createCowndown}
       />
       <CountdownList
+        onEdit={editCountdown}
         onDelete={deleteCountdown}
         countdowns={countdowns}
+        // editMap={editMap}
+        // setEditMap={setEditMap}
       />
     </div>
   );
