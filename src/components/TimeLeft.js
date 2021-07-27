@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import moment from 'moment';
 
 const TimeLeft = (props) => {
-    console.log('props: ', props)
     const [date, setDate] = useState(new Date());
 
     useEffect(() => {
