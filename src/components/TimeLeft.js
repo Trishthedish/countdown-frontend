@@ -5,7 +5,6 @@ const TimeLeft = (props) => {
     const [date, setDate] = useState(new Date());
 
     useEffect(() => {
-        console.log('something')
         let timerId = setInterval(tick, 1000);
         return function cleanup() {
             clearInterval(timerId);
