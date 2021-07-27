@@ -1,6 +1,7 @@
-import moment from 'moment';
-import { useState } from 'react';
 import './Countdown.css';
+import { useState } from 'react';
+import moment from 'moment';
+import TimeLeft from './TimeLeft';
 
 const Countdown = (props) => {
     const countdown = props.countdown;
@@ -50,6 +51,8 @@ const Countdown = (props) => {
         let minutes = target.diff(current, "minutes")
         let seconds = target.diff(current, 'seconds')
 
+        // Keeping this here for comparison of
+        // using table for display purposes.
         return(
             <div>
                 <table>
@@ -118,6 +121,7 @@ const Countdown = (props) => {
             <h3>{countdown.title}</h3>
             <p>Countdown: {countdown.countdown_till_date}</p>
             {calculateTimeLeft(countdown)}
+            <TimeLeft countdown_till_date={countdown.countdown_till_date}/> 
         </div>
         }
     </div>
