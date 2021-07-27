@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { useState } from 'react';
+import './Countdown.css';
 
 const Countdown = (props) => {
     const countdown = props.countdown;
@@ -75,7 +76,7 @@ const Countdown = (props) => {
 
 
     return (
-    <div>
+    <div className="countdown-edit-form">
         {props.editMode ?
 
         <div className="countdown-form">
@@ -109,7 +110,7 @@ const Countdown = (props) => {
             </form>
         </div>
         :
-        <div key={countdown.id}>
+        <div key={countdown.id} className="countdown">
             <span>
                 <button className="edit-button" onClick={props.handleEdit}>edit</button>
                 <button className="delete-button" onClick={props.onDelete}>🗑</button>
