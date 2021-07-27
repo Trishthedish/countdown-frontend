@@ -11,7 +11,7 @@ function App() {
   const API_BASE_URL = 'http://localhost:5000';
 
   const refreshCountdowns = () => {
-    axios.get(`${API_BASE_URL}/countdowns`)
+    return axios.get(`${API_BASE_URL}/countdowns`)
     .then((response) => {
       setCountdowns(response.data)
       setErrorMessage('');
@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   const createCowndown = (newCountdown) => {
-    axios.post(`${API_BASE_URL}/countdowns`, newCountdown).then((response) => {
+    return axios.post(`${API_BASE_URL}/countdowns`, newCountdown).then((response) => {
       refreshCountdowns()
     })
     .catch((error) => {
@@ -34,8 +34,12 @@ function App() {
   }
 
   const deleteCountdown = (id) => {
-    axios.delete(`${API_BASE_URL}/countdowns/${id}`)
+    return axios.delete(`${API_BASE_URL}/countdowns/${id}`)
     .then(refreshCountdowns)
+  }
+
+  const updateCountdown = (countdown) => {
+    return axios.put(`${API_BASE_URL}/countdowns/${countdown.id}`, countdown)
   }
 
   return (
@@ -46,11 +50,13 @@ function App() {
       </div>
       <h1>{errorMessage}</h1>
       <CountdownForm 
-        addCountdownCallback={createCowndown} 
+        addCountdownCallback={createCowndown}
       />
       <CountdownList
+        onSave={updateCountdown}
         onDelete={deleteCountdown}
         countdowns={countdowns}
+        refreshCountdowns={refreshCountdowns}
       />
     </div>
   );
