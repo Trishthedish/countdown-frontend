@@ -46,17 +46,11 @@ const TimeLeft = (props) => {
         )
     }
 
-
-
-
-    console.log('DATE -> ', date)
     return (
         <div>
             <h2>Time Left</h2>
             {calculateTimeLeft(props.countdown_till_date)}
         </div>
     )
-
 }
-
 export default TimeLeft;
