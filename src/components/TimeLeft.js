@@ -41,7 +41,7 @@ const TimeLeft = (props) => {
 
     return (
         <div>
-            <h2>Time Left</h2>
+            <h4>Time Left</h4>
             {calculateTimeLeft(props.countdown_till_date)}
         </div>
     )

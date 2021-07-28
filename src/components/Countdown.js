@@ -82,8 +82,8 @@ const Countdown = (props) => {
                 <button className="edit-button" onClick={props.handleEdit}>edit</button>
                 <button className="delete-button" onClick={props.onDelete}>🗑</button>
             </span>
-            <h3>{countdown.title}</h3>
-            <p>Countdown: {countdown.countdown_till_date}</p>
+            <h2>{countdown.title}</h2>
+            <p>{moment(countdown.countdown_till_date).format("LLL")}</p>
             <TimeLeft countdown_till_date={countdown.countdown_till_date}/> 
         </div>
         }
