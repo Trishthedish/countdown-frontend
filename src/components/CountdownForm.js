@@ -49,8 +49,10 @@ const CountdownForm = (props) => {
     return (
         <div className="countdown-form">
             <form onSubmit={onFormSubmit}>
-                
-                <label htmlFor="title">Countdown Title</label>
+                <div>
+                    <label htmlFor="title">Countdown Title</label>
+                </div>
+
                 <input
                     id="countdown-title"
                     name="title" 
@@ -59,7 +61,10 @@ const CountdownForm = (props) => {
                     value={formFields.title} 
                 />
 
-                <label>Countdown Till Date</label>
+                <div>
+                    <label htmlFor="date">Countdown Till Date</label>
+                </div>
+
                 <input 
                     id="countdown-date"
                     name="countdown-till-date"
@@ -67,11 +72,11 @@ const CountdownForm = (props) => {
                     type="date"
                     value={formFields.date}
                 />
-                {/* surrounded in div to keep it off same line. TO DO: accomplish with css*/}
-                
+
                 <div>
                     <label htmlFor="time">Time</label>
                 </div>
+
                 <input 
                     id="countdown-time"
                     name="countdown-till-time"
@@ -79,7 +84,9 @@ const CountdownForm = (props) => {
                     type="time"
                     value={formFields.time}
                 />
-                <input type="submit" value="Create Countdown"  />
+                <div className="submit-button">
+                    <input type="submit" value="Create Countdown"  />
+                </div>
             </form>
         </div>
     )

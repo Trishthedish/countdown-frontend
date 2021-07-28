@@ -12,9 +12,15 @@ const Countdown = (props) => {
         return properDate;
     }
 
+    const convertTime = (tillDate) => {
+        let newTime = new Date(tillDate);
+        let properTime = moment(newTime).utc().format('HH:mm:ss')
+        return properTime
+    }
     const [formFields, setFormFields] = useState({
         "title": countdown.title,
-        "countdown_till_date": convertDate(countdown.countdown_till_date)
+        "date": convertDate(countdown.countdown_till_date),
+        "time": convertTime(countdown.countdown_till_date)
     })
 
     const onTitleChange = (event) => {
@@ -27,51 +33,72 @@ const Countdown = (props) => {
     const onDateChange = (event) => {
         setFormFields({
             ...formFields,
-            countdown_till_date: event.target.value
+            date: event.target.value
         })
     };
 
+    const onTimeChange = (event) => {
+        setFormFields({
+            ...formFields,
+            time: event.target.value
+        })
+    }
+
     const onFormSubmit = (event) => {
-        console.log('trying to submit something')
         event.preventDefault();
 
         props.onSave({
             id: countdown.id,
             title: formFields.title,
-            countdown_till_date: formFields.countdown_till_date
+            // the smooshing of time and date into DateTime
+            countdown_till_date: moment(formFields.date + "T" + formFields.time + ":00" + moment.tz(moment.tz.guess()).format("Z")).toISOString()
         }).then(props.refreshCountdowns).then(props.cancelEdit)
     };
-
+    
     return (
     <div className="countdown-edit-form">
         {props.editMode ?
 
         <div className="countdown-form">
             <form onSubmit={onFormSubmit}>
-               
-                <label htmlFor="title">Countdown Title</label>
+                <div>
+                    <label htmlFor="title">Countdown Title</label>
+                </div>
 
                 <input
                     id="countdown-title"
                     name="title" 
+                    onChange={onTitleChange}
                     type="text" 
                     value={formFields.title}
-                    onChange={onTitleChange}
                 />
 
-                <label>Countdown Till Date</label>
+                <div>
+                    <label htmlFor="date">Countdown Till Date</label>
+                </div>
 
                 <input 
                     id="countdown-date"
                     name="countdown-till-date"
-                    type="date"
-                    value={formFields.countdown_till_date}
                     onChange={onDateChange}
+                    type="date"
+                    value={formFields.date}
+                />
+                
+                <div>
+                    <label htmlFor="time">Time</label>
+                </div>
+                <input 
+                    id="countdonw-time"
+                    name="countdown-till-time"
+                    onChange={onTimeChange}
+                    type="time"
+                    value={formFields.time}
                 />
 
-                <div>
-                    <input type="submit" value="Save"  />
-                    <button value="cancel" onClick={props.cancelEdit}>Cancel</button>
+                <div className="save-and-cancel-buttons">
+                    <input className="save-button" type="submit" value="Save"  />
+                    <button className="cancel-button" value="cancel" onClick={props.cancelEdit}>Cancel</button>
                 </div>
 
             </form>
