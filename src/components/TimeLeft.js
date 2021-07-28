@@ -23,13 +23,30 @@ const TimeLeft = (props) => {
 
         if (milliseconds > 0) {
             return(
-                <div className="time-left-container">
-                    <section>{diff._data.years} years</section>
-                    <section>{diff._data.months} months</section>
-                    <section>{diff._data.days} days</section>
-                    <section>{diff._data.hours} hours</section>
-                    <section>{diff._data.minutes} minutes</section>
-                    <section>{diff._data.seconds} seconds</section>
+                <div>
+                    <div>
+                        <table className="time-left-table">
+                            <tbody>
+                                <tr>
+                                    <th>Years</th>
+                                    <th>Months</th>
+                                    <th>Days</th>
+                                    <th>Hours</th>
+                                    <th>Minutes</th>
+                                    <th>Seconds</th>
+                                </tr>
+                                <tr>
+                                    <td>{diff._data.years}</td>
+                                    <td>{diff._data.months}</td>
+                                    <td>{diff._data.days}</td>
+                                    <td>{diff._data.hours}</td>
+                                    <td>{diff._data.minutes}</td>
+                                    <td>{diff._data.seconds}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             )
         }
