@@ -8,13 +8,13 @@ const Countdown = (props) => {
 
     const convertDate = (tillDate) => {
         let newDate = new Date(tillDate);
-        let properDate = moment(newDate).utc().format('YYYY-MM-DD')
+        let properDate = moment(newDate).format('YYYY-MM-DD')
         return properDate;
     }
 
     const convertTime = (tillDate) => {
         let newTime = new Date(tillDate);
-        let properTime = moment(newTime).utc().format('HH:mm:ss')
+        let properTime = moment(newTime).format('HH:mm')
         return properTime
     }
     const [formFields, setFormFields] = useState({
