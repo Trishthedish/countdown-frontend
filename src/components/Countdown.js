@@ -42,42 +42,6 @@ const Countdown = (props) => {
         }).then(props.refreshCountdowns).then(props.cancelEdit)
     };
 
-    const calculateTimeLeft = (countdown) => {
-        let target = moment(countdown.countdown_till_date)
-        let current = moment.now()
-        let days = target.diff(current, 'days');
-        let years = target.diff(current, 'years')
-        let hours = target.diff(current, 'hours')
-        let minutes = target.diff(current, "minutes")
-        let seconds = target.diff(current, 'seconds')
-
-        // Keeping this here for comparison of
-        // using table for display purposes.
-        return(
-            <div>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Years</th>
-                            <th>Days</th>
-                            <th>Hours</th>
-                            <th>Minutes</th>
-                            <th>Seconds</th>
-                        </tr>
-                        <tr>
-                            <td>{`${years}`}</td>
-                            <td>{`${days}`}</td>
-                            <td>{`${hours}`}</td>
-                            <td>{`${minutes}`}</td>
-                            <td>{`${seconds}`}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
-
-
     return (
     <div className="countdown-edit-form">
         {props.editMode ?
@@ -120,7 +84,6 @@ const Countdown = (props) => {
             </span>
             <h3>{countdown.title}</h3>
             <p>Countdown: {countdown.countdown_till_date}</p>
-            {calculateTimeLeft(countdown)}
             <TimeLeft countdown_till_date={countdown.countdown_till_date}/> 
         </div>
         }
