@@ -1,8 +1,9 @@
 .countdown {
     border: 2px solid black;
-    width: 30%;
     padding: 8px;
-    margin: 10px;
+    margin: 5px;
+    min-width: 383px;
+    max-width: 360px;
 }
 
 button.edit-button {
@@ -11,4 +12,12 @@ button.edit-button {
 
 button.delete-button {
     float: right;
+}
+
+.save-and-cancel-buttons {
+    padding-bottom: 25px;
+}
+
+.save-button {
+    margin-right: 22px;
 }

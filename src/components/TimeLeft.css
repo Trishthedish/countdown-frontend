@@ -1,3 +1,4 @@
-.time-left-container {
+.time-left-table {
     display: flex;
+    justify-content: center;
 }

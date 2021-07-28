@@ -1,3 +1,10 @@
 .list-of-countdowns {
     border: 1px dotted pink;
 }
+
+.container-of-countdowns {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+}
