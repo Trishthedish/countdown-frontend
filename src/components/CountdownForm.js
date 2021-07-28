@@ -1,11 +1,13 @@
 import './CountdownForm.css';
+import moment from 'moment-timezone';
 
 import { useState } from "react";
 
 const CountdownForm = (props) => {    
     const [formFields, setFormFields] = useState({
         "title": "",
-        "countdown_till_date": ""
+        "date": "",
+        "time": ""
     })
 
     const onTitleChange = (event) => {
@@ -18,30 +20,37 @@ const CountdownForm = (props) => {
     const onDateChange = (event) => {
         setFormFields({
             ...formFields,
-            countdown_till_date: event.target.value
+            date: event.target.value
         })
     };
+
+    const onTimeChange = (event) => {
+        setFormFields({
+            ...formFields,
+            time: event.target.value
+        })
+    }
 
     const onFormSubmit = (event) => {
         event.preventDefault();
 
         props.addCountdownCallback({
             title: formFields.title,
-            countdown_till_date: formFields.countdown_till_date
+            countdown_till_date: moment(formFields.date + "T" + formFields.time + ":00" + moment.tz(moment.tz.guess()).format('Z')).toISOString()
         });
 
         setFormFields({
             title: "",
-            countdown_till_date: ""
+            date: "",
+            time: ""
         })
     };
-
+ 
     return (
         <div className="countdown-form">
             <form onSubmit={onFormSubmit}>
                 
                 <label htmlFor="title">Countdown Title</label>
-
                 <input
                     id="countdown-title"
                     name="title" 
@@ -51,13 +60,24 @@ const CountdownForm = (props) => {
                 />
 
                 <label>Countdown Till Date</label>
-
                 <input 
                     id="countdown-date"
                     name="countdown-till-date"
                     onChange={onDateChange}
                     type="date"
-                    value={formFields.countdown_till_date}
+                    value={formFields.date}
+                />
+                {/* surrounded in div to keep it off same line. TO DO: accomplish with css*/}
+                
+                <div>
+                    <label htmlFor="time">Time</label>
+                </div>
+                <input 
+                    id="countdown-time"
+                    name="countdown-till-time"
+                    onChange={onTimeChange}
+                    type="time"
+                    value={formFields.time}
                 />
                 <input type="submit" value="Create Countdown"  />
             </form>
