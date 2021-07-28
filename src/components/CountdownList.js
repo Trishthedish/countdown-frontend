@@ -34,14 +34,13 @@ const CountdownList = (props) => {
                                     handleEdit={() => handleEdit(countdown)}
                                     cancelEdit={() => cancelEdit(countdown)}
                                     refreshCountdowns={props.refreshCountdowns}
-                                /> 
-                        </div>
+                                />
+                            </div>
                     )
                 })}
             </div>
         </section>
     )
-
 }
 
 export default CountdownList;

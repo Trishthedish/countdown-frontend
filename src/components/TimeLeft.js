@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
+import './TimeLeft.css';
 
 const TimeLeft = (props) => {
     const [date, setDate] = useState(new Date());
@@ -22,7 +23,7 @@ const TimeLeft = (props) => {
 
         if (milliseconds > 0) {
             return(
-                <div>
+                <div className="time-left-container">
                     <section>{diff._data.years} years</section>
                     <section>{diff._data.months} months</section>
                     <section>{diff._data.days} days</section>
