@@ -59,7 +59,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Countdown Clock App</h1>
+      <h1 className="app-title">Countdown Clock App</h1>
   
       <h1>{errorMessage}</h1>
       <CountdownForm 

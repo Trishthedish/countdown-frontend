@@ -21,7 +21,7 @@ const CountdownList = (props) => {
 
     return (
         <section className="list-of-countdowns">
-            <h1>List of Countdowns</h1>
+            <h1 className="countdown-list-title">List of Countdowns</h1>
             <div className="container-of-countdowns">
                 {props.countdowns && props.countdowns.length > 0 && props.countdowns.map(countdown => {
                     return (

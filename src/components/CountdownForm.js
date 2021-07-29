@@ -85,7 +85,7 @@ const CountdownForm = (props) => {
                     value={formFields.time}
                 />
                 <div className="submit-button">
-                    <input type="submit" value="Create Countdown"  />
+                    <input type="submit" value="Create Countdown" className="btn btn-primary" />
                 </div>
             </form>
         </div>

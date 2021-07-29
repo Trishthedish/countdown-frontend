@@ -1,10 +1,12 @@
 .countdown-form {
     display: flex;
     justify-content: center;
-    border: 2px solid black;
+    border: 2px solid gray;
     background-color: yellow;
     min-width: 383px;
     max-width: 360px;
+    border-radius: 34px;
+    background-color: skyblue;
 }
 
 input[type="submit"] {
