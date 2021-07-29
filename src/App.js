@@ -10,9 +10,10 @@ function App() {
    const [errorMessage, setErrorMessage] = useState('')
 
   const API_BASE_URL = 'http://localhost:5000';
+  const API_HEROKU_BASE_URL = 'https://countdown-event-api.herokuapp.com/'
 
   const refreshCountdowns = () => {
-    return axios.get(`${API_BASE_URL}/countdowns`)
+    return axios.get(`${API_HEROKU_BASE_URL}/countdowns`)
     .then((response) => {
       for (let countdown of response.data) {
         // creating new moment object with the 
@@ -40,7 +41,7 @@ function App() {
     if(!isISODate(date)){
       console.log("ISOString format error", date)
     }
-    return axios.post(`${API_BASE_URL}/countdowns`, newCountdown).then((response) => {
+    return axios.post(`${API_HEROKU_BASE_URL}/countdowns`, newCountdown).then((response) => {
       refreshCountdowns()
     })
     .catch((error) => {
@@ -49,17 +50,17 @@ function App() {
   }
 
   const deleteCountdown = (id) => {
-    return axios.delete(`${API_BASE_URL}/countdowns/${id}`)
+    return axios.delete(`${API_HEROKU_BASE_URL}/countdowns/${id}`)
     .then(refreshCountdowns)
   }
 
   const updateCountdown = (countdown) => {
-    return axios.put(`${API_BASE_URL}/countdowns/${countdown.id}`, countdown)
+    return axios.put(`${API_HEROKU_BASE_URL}/countdowns/${countdown.id}`, countdown)
   }
 
   return (
     <div className="App">
-      <h1>Countdown Clock App</h1>
+      <h1 className="app-title">Countdown Clock App</h1>
   
       <h1>{errorMessage}</h1>
       <CountdownForm 

@@ -97,8 +97,8 @@ const Countdown = (props) => {
                 />
 
                 <div className="save-and-cancel-buttons">
-                    <input className="save-button" type="submit" value="Save"  />
-                    <button className="cancel-button" value="cancel" onClick={props.cancelEdit}>Cancel</button>
+                    <input className="save-button btn btn-primary" type="submit" value="Save"  />
+                    <button className="cancel-button btn btn-danger" value="cancel" onClick={props.cancelEdit}>Cancel</button>
                 </div>
 
             </form>
@@ -106,8 +106,8 @@ const Countdown = (props) => {
         :
         <div key={countdown.id} className="countdown">
             <span>
-                <button className="edit-button" onClick={props.handleEdit}>edit</button>
-                <button className="delete-button" onClick={props.onDelete}>🗑</button>
+                <button className="edit-button btn btn-secondary" onClick={props.handleEdit}>edit</button>
+                <button className="delete-button btn btn-danger" onClick={props.onDelete}>🗑</button>
             </span>
             <h2>{countdown.title}</h2>
             <p>{moment(countdown.countdown_till_date).format("LLL")}</p>

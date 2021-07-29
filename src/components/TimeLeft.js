@@ -1,9 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import moment from 'moment';
 import './TimeLeft.css';
 
 const TimeLeft = (props) => {
+    // eslint-disable-next-line no-unused-vars
     const [date, setDate] = useState(new Date());
+
+    const callBackRef = useCallback(audioEl => {
+        if (audioEl !== null) {
+            audioEl.src = "/melodic-clock-strike.mp3";
+            audioEl.play()
+        }
+    },[]) 
 
     useEffect(() => {
         let timerId = setInterval(tick, 1000);
@@ -15,6 +23,7 @@ const TimeLeft = (props) => {
     const tick = () => {
         setDate(new Date());
     }
+
     const calculateTimeLeft = (countdown) => {
         let target = moment(props.countdown_till_date)
         let current = moment()
@@ -51,8 +60,13 @@ const TimeLeft = (props) => {
             )
         }
         return (
-            // TODO: Create display for completed or past events.
-            <div>Countdown Complete!</div>
+            <div>
+                <h2 className="countdown-complete">Countdown Complete!</h2>
+                <audio
+                    ref={callBackRef}
+                    autoplay="true"
+                />
+            </div>
         )
     }
 
